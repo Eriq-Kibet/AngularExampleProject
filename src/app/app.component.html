@@ -1,15 +1,17 @@
 <app-header></app-header>
+
 <div class="container">
   <div class="row">
     <div class="col-md-7 mrgnbtm">
       <h2>Create User</h2>
-      <form>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="form-group col-md-6">
             <label for="exampleInputEmail1">First Name</label>
             <input
               type="text"
               class="form-control"
+              formControlName="firstName"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="First Name"
@@ -20,6 +22,7 @@
             <input
               type="text"
               class="form-control"
+              formControlName="lastName"
               id="exampleInputPassword1"
               placeholder="Last Name"
             />
@@ -31,17 +34,28 @@
             <input
               type="text"
               class="form-control"
+              formControlName="email"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Email"
             />
           </div>
         </div>
-        <button class="btn btn-danger">Create</button>
+        <button
+          type="submit"
+          [disabled]="!userForm.valid"
+          class="btn btn-danger"
+        >
+          Create
+        </button>
       </form>
     </div>
     <div class="col-md-4 mrgnbtm">
-      <app-display-board> </app-display-board>
+      <app-display-board
+        [userCount]="userCount"
+        (getUsersEvent)="getAllUsers()"
+      >
+      </app-display-board>
     </div>
   </div>
 </div>

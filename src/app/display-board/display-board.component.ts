@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-display-board',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./display-board.component.css']
 })
 export class DisplayBoardComponent {
+  constructor() { }
+
+  @Input() userCount = 0;
+  @Output() getUsersEvent = new EventEmitter();
+
+  ngOnInit(): void {
+  }
+
+  getAllUsers() {
+    this.getUsersEvent.emit('get all users');
+  }
 
 }
